@@ -226,7 +226,7 @@ impl<C> CmdArg<C> {
 
         fn slot_for_command(cmd: &Cmd) -> Option<u16> {
             match get_cmd_arg(cmd, 0) {
-                Some(b"EVAL") | Some(b"EVALSHA") => {
+                Some(b"EVAL") | Some(b"EVALSHA") | Some(b"FCALL") | Some(b"FCALL_RO") => {
                     get_cmd_arg(cmd, 2).and_then(|key_count_bytes| {
                         let key_count_res = std::str::from_utf8(key_count_bytes)
                             .ok()
